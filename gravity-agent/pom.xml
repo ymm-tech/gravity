@@ -2,10 +2,14 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>io.manbang</groupId>
+        <artifactId>gravity-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.manbang</groupId>
-    <version>2.2.0</version>
+    <version>1.0.0`</version>
     <artifactId>gravity-agent</artifactId>
 
     <properties>
@@ -23,36 +27,15 @@
         <dependency>
             <groupId>io.manbang</groupId>
             <artifactId>gravity-plugin-api</artifactId>
-            <version>2.1.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>io.manbang</groupId>
-            <artifactId>gravity-fastjson</artifactId>
             <version>1.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
-            <groupId>io.manbang</groupId>
-            <artifactId>gravity-okhttp3</artifactId>
-            <version>1.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-            <version>${jsr305.version}</version>
-            <scope>provided</scope>
-            <optional>true</optional>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -106,6 +89,24 @@
                                 </transformer>
                             </transformers>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.alibaba.fastjson</pattern>
+                                    <shadedPattern>io.manbang.gravity.fastjson</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>okhttp3</pattern>
+                                    <shadedPattern>io.manbang.gravity.okhttp3</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>okio</pattern>
+                                    <shadedPattern>io.manbang.gravity.okio</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>net.bytebuddy</pattern>
+                                    <shadedPattern>io.manbang.gravity.bytebuddy</shadedPattern>
+                                </relocation>
+                            </relocations>
                             <filters>
                                 <filter>
                                     <artifact>*</artifact>
@@ -114,6 +115,8 @@
                                         <exclude>**/LICENSE</exclude>
                                         <exclude>**/NOTICE</exclude>
                                         <exclude>**/MANIFEST.MF</exclude>
+                                        <!-- 主要排除spi等文件，防止对源项目引用的版本造成污染-->
+                                        <exclude>META-INF/**</exclude>
                                     </excludes>
                                 </filter>
                             </filters>

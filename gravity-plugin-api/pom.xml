@@ -2,11 +2,15 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>io.manbang</groupId>
+        <artifactId>gravity-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.manbang</groupId>
     <artifactId>gravity-plugin-api</artifactId>
-    <version>2.1.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <encoding>UTF-8</encoding>
@@ -14,15 +18,13 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <gdc.version>1.0.2</gdc.version>
-        <byte-buddy.version>1.0.0</byte-buddy.version>
         <lombok.version>1.18.12</lombok.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>io.manbang</groupId>
-            <artifactId>gravity-bytebuddy</artifactId>
-            <version>${byte-buddy.version}</version>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
@@ -38,18 +40,6 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>libs-snapshot-local</name>
-            <url>http://maven.amh-group.com/artifactory/libs-snapshot-local</url>
-        </snapshotRepository>
-        <repository>
-            <id>releases</id>
-            <name>libs-release-local</name>
-            <url>http://maven.amh-group.com/artifactory/libs-release-local</url>
-        </repository>
-    </distributionManagement>
     <build>
         <plugins>
             <plugin>

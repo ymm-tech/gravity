@@ -1,18 +1,18 @@
 package io.manbang.gravity.agent;
 
-import io.manbang.gravity.fastjson.JSON;
-import io.manbang.gravity.okhttp3.Cache;
-import io.manbang.gravity.okhttp3.Call;
-import io.manbang.gravity.okhttp3.MediaType;
-import io.manbang.gravity.okhttp3.OkHttpClient;
-import io.manbang.gravity.okhttp3.Request;
-import io.manbang.gravity.okhttp3.RequestBody;
-import io.manbang.gravity.okhttp3.Response;
-import io.manbang.gravity.okhttp3.ResponseBody;
+import com.alibaba.fastjson.JSON;
 import io.manbang.gravity.plugin.AgentOptions;
 import io.manbang.gravity.plugin.GravityHome;
 import io.manbang.gravity.plugin.JarType;
 import lombok.extern.java.Log;
+import okhttp3.Cache;
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,6 +1,7 @@
 package io.manbang.gravity.plugin;
 
-import io.manbang.gravity.bytebuddy.agent.builder.AgentBuilder;
+
+import net.bytebuddy.agent.builder.AgentBuilder;
 
 /**
  * 代理构建器定制器SPI，用户可以自定义，如果没有自定义需求，则利用默认定制器 {@link DefaultAgentBuilderCustomizer}

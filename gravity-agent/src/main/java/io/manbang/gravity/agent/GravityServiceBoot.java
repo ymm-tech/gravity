@@ -17,6 +17,9 @@ import java.util.Set;
  */
 @Log
 enum GravityServiceBoot {
+    /**
+     * instance
+     */
     INSTANCE;
 
     /**

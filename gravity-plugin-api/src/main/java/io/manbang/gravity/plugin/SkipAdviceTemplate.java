@@ -1,14 +1,14 @@
 package io.manbang.gravity.plugin;
 
-import io.manbang.gravity.bytebuddy.asm.Advice.AllArguments;
-import io.manbang.gravity.bytebuddy.asm.Advice.OnMethodEnter;
-import io.manbang.gravity.bytebuddy.asm.Advice.OnMethodExit;
-import io.manbang.gravity.bytebuddy.asm.Advice.OnNonDefaultValue;
-import io.manbang.gravity.bytebuddy.asm.Advice.Origin;
-import io.manbang.gravity.bytebuddy.asm.Advice.Return;
-import io.manbang.gravity.bytebuddy.asm.Advice.This;
-import io.manbang.gravity.bytebuddy.asm.Advice.Thrown;
-import io.manbang.gravity.bytebuddy.implementation.bytecode.assign.Assigner;
+import net.bytebuddy.asm.Advice.AllArguments;
+import net.bytebuddy.asm.Advice.OnMethodEnter;
+import net.bytebuddy.asm.Advice.OnMethodExit;
+import net.bytebuddy.asm.Advice.OnNonDefaultValue;
+import net.bytebuddy.asm.Advice.Origin;
+import net.bytebuddy.asm.Advice.Return;
+import net.bytebuddy.asm.Advice.This;
+import net.bytebuddy.asm.Advice.Thrown;
+import net.bytebuddy.implementation.bytecode.assign.Assigner;
 
 import java.lang.reflect.Method;
 import java.util.Stack;

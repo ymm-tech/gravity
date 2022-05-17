@@ -6,11 +6,10 @@
 
     <groupId>io.manbang</groupId>
     <artifactId>gravity-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <modules>
         <module>gravity-plugin-api</module>
         <module>gravity-agent</module>
-        <module>gravity-agent-proxy</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -21,28 +20,9 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <lombok.version>1.18.10</lombok.version>
-        <slf4j.version>1.7.25</slf4j.version>
-        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+        <okhttp.version>3.14.9</okhttp.version>
+        <fastjson.version>1.2.75</fastjson.version>
         <byte-buddy.version>1.10.13</byte-buddy.version>
-        <zebra.version>2.8.3</zebra.version>
-        <commons-lang3.version>3.10</commons-lang3.version>
-        <commons-collections4.version>4.4</commons-collections4.version>
-        <ymm-file.version>1.0.8</ymm-file.version>
-        <cat-client.version>3.0.1</cat-client.version>
-        <lion-client.version>2.2.2</lion-client.version>
-        <dpsf-net.version>2.7.8-YMM-1.1.11</dpsf-net.version>
-        <aliyun.oss.version>2.5.0</aliyun.oss.version>
-        <ymmoa-session-api.version>1.0.1</ymmoa-session-api.version>
-        <mdm-hr-api.version>1.1.3</mdm-hr-api.version>
-        <validation-api>2.0.1.Final</validation-api>
-        <openfeign.version>2.0.1.RELEASE</openfeign.version>
-        <common-logger.version>1.1.1</common-logger.version>
-        <ymm-logging.version>1.3.1</ymm-logging.version>
-        <health-check.version>1.0.9</health-check.version>
-        <eureka.version>1.0.5</eureka.version>
-        <guava.version>18.0</guava.version>
-        <gdc.version>1.0.2</gdc.version>
-        <log4j.version>2.15.0</log4j.version>
     </properties>
 
     <dependencies>
@@ -60,37 +40,19 @@
                 <version>2.1.0</version>
             </dependency>
             <dependency>
-                <groupId>io.manbang</groupId>
-                <artifactId>gravity-bytebuddy</artifactId>
-                <version>1.0.0</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>*</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>${byte-buddy.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.manbang</groupId>
-                <artifactId>gravity-okhttp3</artifactId>
-                <version>1.0.0</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>*</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.manbang</groupId>
-                <artifactId>gravity-fastjson</artifactId>
-                <version>1.0.0</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>*</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -99,218 +61,6 @@
                 <optional>true</optional>
                 <scope>provided</scope>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-commons</artifactId>
-                <version>2.3.0.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>com.dianping.zebra</groupId>
-                <artifactId>zebra-dao</artifactId>
-                <version>${zebra.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>tomcat-juli</artifactId>
-                        <groupId>org.apache.tomcat</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>${commons-collections4.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ymm</groupId>
-                <artifactId>ymm-file-api</artifactId>
-                <version>${ymm-file.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.dianping.dpsf</groupId>
-                <artifactId>dpsf-net</artifactId>
-                <version>${dpsf-net.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.dianping.lion</groupId>
-                <artifactId>lion-client</artifactId>
-                <version>${lion-client.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dianping.lion</groupId>
-                <artifactId>spring-boot-starter-lion</artifactId>
-                <version>${lion-client.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dianping.cat</groupId>
-                <artifactId>cat-client</artifactId>
-                <version>${cat-client.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.aliyun.oss</groupId>
-                <artifactId>aliyun-sdk-oss</artifactId>
-                <version>${aliyun.oss.version}</version>
-            </dependency>
-
-            <!--sso start -->
-            <dependency>
-                <groupId>com.ymmoa</groupId>
-                <artifactId>ymmoa-session-api</artifactId>
-                <version>${ymmoa-session-api.version}</version>
-            </dependency>
-            <!--sso end -->
-
-            <dependency>
-                <groupId>com.ymmoa</groupId>
-                <artifactId>mdm-hr-api</artifactId>
-                <version>${mdm-hr-api.version}</version>
-            </dependency>
-
-            <!-- jsr-303接口 -->
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>${validation-api}</version>
-            </dependency>
-
-            <!--openfeign start -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-openfeign</artifactId>
-                <version>${openfeign.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!--openfeign end-->
-
-            <dependency>
-                <groupId>com.ymm.common-plugins</groupId>
-                <artifactId>common-logger-log4j2</artifactId>
-                <version>${common-logger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ymm.common-plugins</groupId>
-                <artifactId>common-logger</artifactId>
-                <version>${common-logger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ymm.common.logging</groupId>
-                <artifactId>ymm-logging-bom</artifactId>
-                <version>${ymm-logging.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.25</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-slf4j-impl</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <!--优雅 start-->
-            <dependency>
-                <groupId>com.ymm.framework</groupId>
-                <artifactId>health-check-starter</artifactId>
-                <version>${health-check.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ymm.framework</groupId>
-                <artifactId>health-check-flow</artifactId>
-                <version>${health-check.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ymm.framework</groupId>
-                <artifactId>health-check-common</artifactId>
-                <version>${health-check.version}</version>
-            </dependency>
-            <!--优雅 end-->
-
-            <!--内部网关 start -->
-            <dependency>
-                <groupId>com.ymmoa</groupId>
-                <artifactId>eureka-boot2client-adapter</artifactId>
-                <version>${eureka.version}</version>
-            </dependency>
-            <!--内部网关 end -->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-
-            <!-- 核心包 -->
-            <dependency>
-                <groupId>com.ymm.framework</groupId>
-                <artifactId>distributed-global-context-core</artifactId>
-                <version>${gdc.version}</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- 读 -->
-            <dependency>
-                <groupId>com.ymm.framework</groupId>
-                <artifactId>distributed-global-context-read</artifactId>
-                <version>${gdc.version}</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- 写 -->
-            <dependency>
-                <groupId>com.ymm.framework</groupId>
-                <artifactId>distributed-global-context-write</artifactId>
-                <version>${gdc.version}</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- 全链路适配 -->
-            <dependency>
-                <groupId>com.ymm.framework</groupId>
-                <artifactId>distributed-global-context-adapter</artifactId>
-                <version>${gdc.version}</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- zebra-->
-            <dependency>
-                <groupId>com.dianping.zebra</groupId>
-                <artifactId>zebra-api</artifactId>
-                <version>${zebra.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dianping.zebra</groupId>
-                <artifactId>zebra-ds-monitor-client</artifactId>
-                <version>${zebra.version}</version>
-            </dependency>
-
         </dependencies>
 
     </dependencyManagement>

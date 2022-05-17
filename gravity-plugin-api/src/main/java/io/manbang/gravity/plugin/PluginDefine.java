@@ -1,9 +1,10 @@
 package io.manbang.gravity.plugin;
 
 
-import io.manbang.gravity.bytebuddy.agent.builder.AgentBuilder;
-import io.manbang.gravity.bytebuddy.description.type.TypeDescription;
-import io.manbang.gravity.bytebuddy.matcher.ElementMatcher;
+
+import net.bytebuddy.agent.builder.AgentBuilder;
+import net.bytebuddy.description.type.TypeDescription;
+import net.bytebuddy.matcher.ElementMatcher;
 
 import java.lang.instrument.Instrumentation;
 

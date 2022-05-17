@@ -1,7 +1,7 @@
 package io.manbang.gravity.plugin;
 
-import io.manbang.gravity.bytebuddy.asm.Advice;
-import io.manbang.gravity.bytebuddy.implementation.bytecode.assign.Assigner;
+import net.bytebuddy.asm.Advice;
+import net.bytebuddy.implementation.bytecode.assign.Assigner;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

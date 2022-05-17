@@ -1,20 +1,5 @@
 package io.manbang.gravity.agent;
 
-import io.manbang.gravity.bytebuddy.ByteBuddy;
-import io.manbang.gravity.bytebuddy.agent.builder.AgentBuilder;
-import io.manbang.gravity.bytebuddy.asm.Advice;
-import io.manbang.gravity.bytebuddy.description.field.FieldDescription;
-import io.manbang.gravity.bytebuddy.description.method.MethodDescription;
-import io.manbang.gravity.bytebuddy.description.type.TypeDescription;
-import io.manbang.gravity.bytebuddy.dynamic.ClassFileLocator;
-import io.manbang.gravity.bytebuddy.dynamic.DynamicType;
-import io.manbang.gravity.bytebuddy.dynamic.loading.ClassInjector;
-import io.manbang.gravity.bytebuddy.implementation.MethodDelegation;
-import io.manbang.gravity.bytebuddy.implementation.SuperMethodCall;
-import io.manbang.gravity.bytebuddy.implementation.bind.annotation.Morph;
-import io.manbang.gravity.bytebuddy.matcher.ElementMatcher;
-import io.manbang.gravity.bytebuddy.pool.TypePool;
-import io.manbang.gravity.bytebuddy.utility.JavaModule;
 import io.manbang.gravity.plugin.AdviceTemplate;
 import io.manbang.gravity.plugin.AgentPluginClassLoader;
 import io.manbang.gravity.plugin.EmptyExtendedExecutor;
@@ -28,6 +13,21 @@ import io.manbang.gravity.plugin.PluginDefine;
 import io.manbang.gravity.plugin.SkipAdviceTemplate;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
+import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.agent.builder.AgentBuilder;
+import net.bytebuddy.asm.Advice;
+import net.bytebuddy.description.field.FieldDescription;
+import net.bytebuddy.description.method.MethodDescription;
+import net.bytebuddy.description.type.TypeDescription;
+import net.bytebuddy.dynamic.ClassFileLocator;
+import net.bytebuddy.dynamic.DynamicType;
+import net.bytebuddy.dynamic.loading.ClassInjector;
+import net.bytebuddy.implementation.MethodDelegation;
+import net.bytebuddy.implementation.SuperMethodCall;
+import net.bytebuddy.implementation.bind.annotation.Morph;
+import net.bytebuddy.matcher.ElementMatcher;
+import net.bytebuddy.pool.TypePool;
+import net.bytebuddy.utility.JavaModule;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -36,11 +36,12 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static io.manbang.gravity.bytebuddy.jar.asm.Opcodes.ACC_PRIVATE;
-import static io.manbang.gravity.bytebuddy.jar.asm.Opcodes.ACC_VOLATILE;
-import static io.manbang.gravity.bytebuddy.matcher.ElementMatchers.isConstructor;
-import static io.manbang.gravity.bytebuddy.matcher.ElementMatchers.isDeclaredBy;
-import static io.manbang.gravity.bytebuddy.matcher.ElementMatchers.not;
+import static net.bytebuddy.jar.asm.Opcodes.ACC_PRIVATE;
+import static net.bytebuddy.jar.asm.Opcodes.ACC_VOLATILE;
+import static net.bytebuddy.matcher.ElementMatchers.isConstructor;
+import static net.bytebuddy.matcher.ElementMatchers.isDeclaredBy;
+import static net.bytebuddy.matcher.ElementMatchers.not;
+
 
 @Log
 class PluginTransformer implements AgentBuilder.Transformer {

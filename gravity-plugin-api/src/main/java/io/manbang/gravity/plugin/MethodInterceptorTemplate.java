@@ -1,10 +1,11 @@
 package io.manbang.gravity.plugin;
 
-import io.manbang.gravity.bytebuddy.implementation.bind.annotation.AllArguments;
-import io.manbang.gravity.bytebuddy.implementation.bind.annotation.Morph;
-import io.manbang.gravity.bytebuddy.implementation.bind.annotation.Origin;
-import io.manbang.gravity.bytebuddy.implementation.bind.annotation.RuntimeType;
-import io.manbang.gravity.bytebuddy.implementation.bind.annotation.This;
+
+import net.bytebuddy.implementation.bind.annotation.AllArguments;
+import net.bytebuddy.implementation.bind.annotation.Morph;
+import net.bytebuddy.implementation.bind.annotation.Origin;
+import net.bytebuddy.implementation.bind.annotation.RuntimeType;
+import net.bytebuddy.implementation.bind.annotation.This;
 
 import java.lang.reflect.Method;
 

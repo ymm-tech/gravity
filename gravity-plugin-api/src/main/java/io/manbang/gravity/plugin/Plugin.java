@@ -1,8 +1,9 @@
 package io.manbang.gravity.plugin;
 
-import io.manbang.gravity.bytebuddy.description.method.MethodDescription;
-import io.manbang.gravity.bytebuddy.matcher.ElementMatcher;
-import io.manbang.gravity.bytebuddy.matcher.ElementMatchers;
+
+import net.bytebuddy.description.method.MethodDescription;
+import net.bytebuddy.matcher.ElementMatcher;
+import net.bytebuddy.matcher.ElementMatchers;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,6 +1,7 @@
 package io.manbang.gravity.plugin;
 
-import io.manbang.gravity.bytebuddy.agent.builder.AgentBuilder;
+
+import net.bytebuddy.agent.builder.AgentBuilder;
 
 enum DefaultAgentBuilderCustomizer implements AgentBuilderCustomizer {
     INSTANCE;
