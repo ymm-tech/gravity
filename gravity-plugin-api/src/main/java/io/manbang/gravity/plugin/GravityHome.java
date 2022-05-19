@@ -16,6 +16,9 @@ import java.util.stream.Stream;
  * @since 2020/9/1 9:13
  */
 public enum GravityHome {
+    /**
+     * instance
+     */
     INSTANCE;
 
     private static final String HOME_DIR_NAME = ".gravity";
@@ -96,10 +99,10 @@ public enum GravityHome {
                     return;
                 }
 
-                Optional.ofNullable(file.listFiles(this::isJarFile))
-                        .map(Stream::of)
-                        .orElse(Stream.empty())
-                        .forEach(File::delete);
+//                Optional.ofNullable(file.listFiles(this::isJarFile))
+//                        .map(Stream::of)
+//                        .orElse(Stream.empty())
+//                        .forEach(File::delete);
 
             } else {
                 boolean created = file.mkdirs();

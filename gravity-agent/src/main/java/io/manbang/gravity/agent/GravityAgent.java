@@ -48,7 +48,7 @@ public class GravityAgent {
         GravityUtils.setInstrumentation(instrumentation);
 
         // 现在全部插件
-        PluginDownloader.downloadPlugins(instrumentation, AgentOptions.INSTANCE);
+//        PluginDownloader.downloadPlugins(instrumentation, AgentOptions.INSTANCE);
 
         AgentPluginClassLoader pluginClassLoader = new AgentPluginClassLoader();
         GravityUtils.setAgentPluginClassLoader(pluginClassLoader);

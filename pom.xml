@@ -10,6 +10,8 @@
     <modules>
         <module>gravity-plugin-api</module>
         <module>gravity-agent</module>
+        <module>gravity-demo</module>
+        <module>gravity-plugin</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -34,11 +36,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>io.manbang</groupId>
-                <artifactId>gravity-agent</artifactId>
-                <version>2.1.0</version>
-            </dependency>
             <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy</artifactId>

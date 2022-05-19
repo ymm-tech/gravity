@@ -11,6 +11,9 @@ import java.util.Map;
  * @since 2020/08/18
  */
 public enum AgentOptions {
+    /**
+     * instance
+     */
     INSTANCE;
 
     private final String argument;
