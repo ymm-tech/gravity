@@ -85,7 +85,7 @@ public class Order {
 </dependency>
 ```
 插件定义，描述目标的织入点:
-```
+```java
 /**
  * @since 2022/05/19 10:55
  */
@@ -103,7 +103,7 @@ public class AopPluginDefine implements PluginDefine {
 }
 ```
 具体织入的逻辑：
-```
+```java
 /**
  * @since 2022/05/19 11:05
  */
