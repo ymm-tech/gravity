@@ -167,4 +167,4 @@ public class AopAdvice implements Advice {
 五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice exitMethod
 信息: method exit:deliverCargoresult:deliver cargo success.
 ```
-
+具体示例已经放在`gravity-demo`和`gravity-plugin`中
