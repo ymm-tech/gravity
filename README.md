@@ -134,7 +134,7 @@ public class AopAdvice implements Advice {
 }
 ```
 新建`SPI`文件：`/META-INF/services/io.manbang.gravity.plugin.PluginDefine`，内容为新创建的插件定义`AopPluginDefine` <br><br>
-打包该插件，并将打包好的插件放置于`{user.home}/.gravity/cargo-publish-app/agent`目录下(`user.home`路径可以通过执行`java -XshowSettings:properties -version`得到，cargo-publish-app为应用名，可以自行定义)<br><br>
+打包该插件，并将打包好的插件放置于`{user.home}/.gravity/cargo-publish-app/agent`目录下(`user.home`路径可以通过执行`java -XshowSettings:properties -version`得到，`cargo-publish-app`为应用名，可以自行定义)<br><br>
 执行`Order`的`main`方法在启动时，新增`VM`命令：`-javaagent:XXXX/XXXX/gravity-agent.jar=appName=cargo-publish-app`,`gravity-agent.jar`下载路径：<br>
 可以观察到控制台输出预期想要的业务出入参：
 ```
