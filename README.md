@@ -75,4 +75,96 @@ public class Order {
 }
 ```
 
-这时候，我们希望可以监控下该笔订单的
+这时候，我们希望可以监控该笔订单的行为，决定通过无侵入方式打印出入参<br>
+首先引入pom依賴:
+```
+<dependency>
+   <groupId>io.manbang</groupId>
+   <artifactId>gravity-plugin-api</artifactId>
+   <version>1.0.0</version>
+</dependency>
+```
+插件定义，描述目标的织入点:
+```
+/**
+ * @since 2022/05/19 10:55
+ */
+public class AopPluginDefine implements PluginDefine {
+    @Override
+    public ElementMatcher<TypeDescription> getTypeMatcher() {
+        return ElementMatchers.named("io.manbang.gravity.trade.Driver")
+                .or(ElementMatchers.named("io.manbang.gravity.trade.Shippers"));
+    }
+
+    @Override
+    public Plugin[] getPlugins() {
+        return new Plugin[]{Plugin.advice(ElementMatchers.isMethod(), "io.manbang.gravity.plugin.monitor.AopAdvice").withMethod()};
+    }
+}
+```
+具体织入的逻辑：
+```
+/**
+ * @since 2022/05/19 11:05
+ */
+public class AopAdvice implements Advice {
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AopAdvice.class.getName());
+
+    @Override
+    public void enterMethod(ExecuteContext context) {
+        final Method method = context.getMethod();
+        final Object[] argument = context.getArguments();
+        final StringBuilder builder = new StringBuilder();
+        builder.append("method enter:").append(method.getName());
+        for (int i = 0; i < argument.length; i++) {
+            builder.append(" arg  number:").append(i).append(" arg :").append(argument[i]);
+        }
+        log.info(builder.toString());
+    }
+
+    @Override
+    public void exitMethod(ExecuteContext context) {
+        final Method method = context.getMethod();
+        final Object result = context.getResult();
+        final StringBuilder builder = new StringBuilder();
+        builder.append("method exit:").append(method.getName());
+        builder.append("result:").append(result);
+        log.info(builder.toString());
+    }
+}
+```
+新建`SPI`文件：`/META-INF/services/io.manbang.gravity.plugin.PluginDefine`，内容为新创建的插件定义`AopPluginDefine` <br><br>
+打包该插件，并将打包好的插件放置于`{user.home}/.gravity/cargo-publish-app/agent`目录下(`user.home`路径可以通过执行`java -XshowSettings:properties -version`得到，cargo-publish-app为应用名，可以自行定义)<br><br>
+执行`Order`的`main`方法在启动时，新增`VM`命令：`-javaagent:XXXX/XXXX/gravity-agent.jar=appName=cargo-publish-app`,`gravity-agent.jar`下载路径：<br>
+可以观察到控制台输出：
+```
+五月 19, 2022 4:49:05 下午 io.manbang.gravity.agent.GravityAgent instrument
+信息: 加载插件：AopPluginDefine
+五月 19, 2022 4:49:05 下午 io.manbang.gravity.agent.PluginTransformer transform
+信息: io.manbang.gravity.trade.Shippers
+五月 19, 2022 4:49:05 下午 io.manbang.gravity.agent.PluginTransformer getClassLoader
+信息: The current classLoader is sun.misc.Launcher$AppClassLoader@18b4aac2 , pluginDefine: AopPluginDefine , transform: io.manbang.gravity.trade.Shippers
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.agent.GravityServiceBoot startServices
+信息: 开始启动重力服务……
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.agent.PluginTransformer transform
+信息: io.manbang.gravity.trade.Driver
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.agent.PluginTransformer getClassLoader
+信息: The current classLoader is sun.misc.Launcher$AppClassLoader@18b4aac2 , pluginDefine: AopPluginDefine , transform: io.manbang.gravity.trade.Driver
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice enterMethod
+信息: method enter:postOrder
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice exitMethod
+信息: method exit:postOrderresult:南京市 雨花台区 万博科技园 运满满总部 50立方 10吨
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice enterMethod
+信息: method enter:acceptOrder arg  number:0 arg :南京市 雨花台区 万博科技园 运满满总部 50立方 10吨
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice exitMethod
+信息: method exit:acceptOrderresult:true
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice enterMethod
+信息: method enter:loadCargo
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice exitMethod
+信息: method exit:loadCargoresult:load cargo success.
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice enterMethod
+信息: method enter:deliverCargo
+五月 19, 2022 4:49:06 下午 io.manbang.gravity.plugin.monitor.AopAdvice exitMethod
+信息: method exit:deliverCargoresult:deliver cargo success.
+```
+
